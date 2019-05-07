@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from scapy.all import *
 
+#1 bit is equal to .125 bytes
 def main():
     packets = rdpcap('Node1.pcap')
     requestsrecv = 0
@@ -29,10 +30,10 @@ def main():
     print('Number of ICMP replies recieved from 192.168.200.1: ' + str(replysrecv))
     print('Number of ICMP requests sent to 192.168.200.1: ' + str(requestsent))
     print('Number of ICMP replies sent to 192.168.200.1: ' + str(replysent))
-    print('Amount of ICMP request data recieved from 192.168.200.1: ' + str(requestdatarecv))
-    print('Amount of ICMP reply data recieved from 192.168.200.1: ' + str(replydatarecv))
-    print('Amount of ICMP request data sent from 192.168.200.1: ' + str(requestdatasent))
-    print('Amount of ICMP reply data sent from 192.168.200.1: ' + str(replydatasent))
+    print('Amount of ICMP request data recieved from 192.168.200.1: ' + str(requestdatarecv) + ' bits, ' + str(float(requestdatarecv)/.125) + ' bytes')
+    print('Amount of ICMP reply data recieved from 192.168.200.1: ' + str(replydatarecv) + ' bits, ' + str(float(replydatarecv)/.125) + ' bytes')
+    print('Amount of ICMP request data sent from 192.168.200.1: ' + str(requestdatasent) + ' bits, ' + str(float(requestdatasent)/.125) + ' bytes')
+    print('Amount of ICMP reply data sent from 192.168.200.1: ' + str(replydatasent) + ' bits, ' + str(float(replydatasent)/.125) + ' bytes')
 
 if __name__ == "__main__":
     main()
