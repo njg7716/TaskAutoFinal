@@ -16,16 +16,16 @@ def main():
         if packet.haslayer(ICMP):
             if str(packet[IP].src) == '192.168.200.1' and str(packet[ICMP].type) == '8':    #Echo requests recieved from this IP
                 requestsrecv += 1
-                requestdatarecv += len(packet[Raw].load)
+                requestdatarecv += len(packet[Raw].load) + 14
             if str(packet[IP].src) == '192.168.200.1' and str(packet[ICMP].type) == '0':    #Echo replies recieved from this IP
                 replysrecv += 1
-                replydatarecv += len(packet[Raw].load)
+                replydatarecv += len(packet[Raw].load) + 14
             if str(packet[IP].dst) == '192.168.200.2' and str(packet[ICMP].type) == '8':    #Echo requests sent to this IP
                 requestsent += 1
-                requestdatasent += len(packet[Raw].load)
+                requestdatasent += len(packet[Raw].load) + 14
             if str(packet[IP].dst) == '192.168.200.2' and str(packet[ICMP].type) == '0':    #Echo replies sent to this IP
                 replysent += 1
-                replydatasent  += len(packet[Raw].load)
+                replydatasent  += len(packet[Raw].load) + 14
     print('Number of ICMP requests recieved from 192.168.200.1: ' + str(requestsrecv))
     print('Number of ICMP replies recieved from 192.168.200.1: ' + str(replysrecv))
     print('Number of ICMP requests sent to 192.168.200.1: ' + str(requestsent))
